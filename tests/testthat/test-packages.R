@@ -10,10 +10,19 @@
 #   expect_vector(pkgs, character())
 # })
 
-# part 2 demo ----
-test_that("get_packages() error", {
+# # part 2 demo ----
+# test_that("get_packages() error", {
+#   vcr::skip_if_vcr_off()
+#   vcr::use_cassette("packages-error", {
+#     expect_error(get_packages("maelle"), "take off")
+#   })
+# })
+# new test demo 2 ----
+test_that("get_packages() retries", {
   vcr::skip_if_vcr_off()
-  vcr::use_cassette("packages-error", {
-    expect_error(get_packages("maelle"), "take off")
+  vcr::use_cassette("packages-retry", {
+    expect_message(pkgs <- get_packages("maelle"), "try")
   })
+  expect_vector(pkgs, character())
 })
+
