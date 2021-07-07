@@ -23,3 +23,5 @@ get_packages2 <- function(universe) {
   content <- httr::content(resp)
   unlist(content)
 }
+
+#ropensci/opencage/articles/opemcage.html
